@@ -17,8 +17,8 @@ function read(request, response) {
 }
 
 async function list(request, response) {
-  const flagPresent = request.query.is_showing === 'true';
-  const data = await service.list(flagPresent);
+  const isShowingOnly = request.query.is_showing === 'true';
+  const data = await service.list(isShowingOnly);
   response.json({ data });
 }
 
