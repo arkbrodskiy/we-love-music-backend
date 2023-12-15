@@ -19,9 +19,8 @@ async function destroy(request, response) {
 }
 
 async function list(request, response) {
-  // TODO: Write your code here
-
-  response.json({  });
+  const data = await service.list(request.params.movieId)
+  response.json({ data });
 }
 
 function hasMovieIdInPath(request, response, next) {
