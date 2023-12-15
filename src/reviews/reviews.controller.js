@@ -3,9 +3,13 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const methodNotAllowed = require("../errors/methodNotAllowed");
 
 async function reviewExists(request, response, next) {
-  // TODO: Write your code here
-
-  next({ });
+  const reviewId = request.params.reviewId;
+  const review = await service.read(reviewId);
+  if (review) {
+    response.locals.review = review;
+    return next();
+  }
+  next({status: 404, message: `Review ${reviewId} cannot be found`});
 }
 
 async function destroy(request, response) {
@@ -34,8 +38,13 @@ function noMovieIdInPath(request, response, next) {
 }
 
 async function update(request, response) {
-  // TODO: Write your code here
-
+  const updatedReview = {
+    ...response.locals.review,
+    ...request.body.data,
+    review_id: response.locals.review.review_id,
+  };
+  const data = await service.update(updatedReview);
+  response.json({ data })
 }
 
 module.exports = {
