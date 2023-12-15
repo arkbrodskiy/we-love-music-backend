@@ -21,7 +21,7 @@ async function destroy(review_id) {
 async function list(movie_id) {
   return db(tableName)
       .join("critics", "reviews.critic_id", "critics.critic_id")
-      .select("reviews.*",
+      .select(`${tableName}.*`,
           "critics.critic_id as c_critic_id",
           "critics.created_at as c_created_at",
           "critics.updated_at as c_updated_at",
