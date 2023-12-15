@@ -29,7 +29,7 @@ async function list(movie_id) {
           "critics.organization_name",
           "critics.surname")
       .where({"reviews.movie_id" : movie_id})
-      .then(dataArr => dataArr.map(generateCriticObject()))
+      .then(reviewsArray => reviewsArray.map(generateCriticObject()))
 }
 
 async function read(reviewId) {
