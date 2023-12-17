@@ -4,7 +4,7 @@ const tableName = "movies";
 
 async function list(is_showing) {
   return db(tableName)
-    .select("*")
+    .select("movies.*")
     .modify((queryBuilder) => {
       if (is_showing) {
         queryBuilder
